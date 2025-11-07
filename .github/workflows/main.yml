@@ -1,0 +1,35 @@
+on:
+    push:
+        branches:
+            - main
+    workflow_dispatch:
+jobs:
+    with-checkout:
+
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v3
+            - name: List files
+              run: ls -la
+            - name: Display current directory
+              run: pwd
+            - name: Show Git status
+              run: git status
+
+    without-checkout:
+        runs-on: ubuntu-latest
+        steps:
+            - name: List files
+              run: ls -la
+            - name: Display current directory
+              run: pwd
+            - name: Show Git status
+              run: git status
+            
+        
+            - name: Execute app.py (expected to fail)
+              run: python app.py
+
+            - name: Docker image will fail
+              run: docker build -t checkout-demo:without .  
