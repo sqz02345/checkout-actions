@@ -1,1 +1,1 @@
-# checkout-actions
+name: Learning checkout
